@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabController: UITabBarController {
     
@@ -24,11 +25,37 @@ class MainTabController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configureViewControllers()
-        configureUI()
-        
+        //logUserOut()
+        view.backgroundColor = .twitterBlue
+        authenticateUserAndConfiureUI()
     }
+    
+    // MARK: - API
+    
+    func authenticateUserAndConfiureUI() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else {
+            configureViewControllers()
+            configureUI()
+        }
+    }
+    
+    func logUserOut() {
+        do {
+            try Auth.auth().signOut()
+            print("DEBUG: Did log user out..")
+        } catch let error {
+            print("DEBUG: Failed to sign out with error \(error.localizedDescription )")
+        }
+    }
+    
+    
+    // MARK: - Selectors
     
     @objc func actionButtonTapped() {
         print("button tapped")
@@ -36,11 +63,16 @@ class MainTabController: UITabBarController {
     
     // MARK: - Helpers
     
+
     func configureUI() {
     
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithDefaultBackground()
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        } else {
+            // Fallback on earlier versions
+        }
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithDefaultBackground()

@@ -70,7 +70,22 @@ class LoginController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleLogin() {
-        print("handle login...")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthService.shared.logInUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("DEBUG: Error logging ing \(error.localizedDescription)")
+                return
+            }
+            
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else { return }
+            guard let tab = UIApplication.shared.keyWindow?.rootViewController as? MainTabController else { return }
+            
+            tab.authenticateUserAndConfiureUI()
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowSignUp() {
@@ -103,8 +118,6 @@ class LoginController: UIViewController {
         view.addSubview(dontHaveAccountButton)
         dontHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
                                      right: view.rightAnchor, paddingLeft: 40, paddingBottom: 16, paddingRight: 40)
-        
-        
         
         
     }

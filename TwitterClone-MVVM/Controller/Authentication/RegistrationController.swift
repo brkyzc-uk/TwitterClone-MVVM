@@ -107,24 +107,26 @@ class RegistrationController: UIViewController {
         guard let password = passwordTextField.text else { return }
         guard let fullname = fullnameTextField.text else { return }
         guard let username = usernameTextField.text else { return }
-       
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("DEBUG: Error is \(error.localizedDescription)")
-                return
-            }
-            guard let uid = result?.user.uid else { return }
-            let values = ["email": email, "username": username, "fullname": fullname]
-            let ref = Database.database().reference().child("users").child(uid)
+        
+        let credentials = AuthCredentials(email: email,
+                                          password: password,
+                                          fullname: fullname,
+                                          username: username,
+                                          profileImage: profileImage)
+        
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else { return }
+            guard let tab = UIApplication.shared.keyWindow?.rootViewController as? MainTabController else { return }
             
-            ref.updateChildValues(values) { error, ref in
-                print("DEBUG: Successfully updated user information...")
-            }
+            tab.authenticateUserAndConfiureUI()
+            
+            self.dismiss(animated: true, completion: nil)
+ 
         }
     }
     
     @objc func handleAddProfilePhoto() {
-       present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - Helpers
@@ -155,7 +157,7 @@ class RegistrationController: UIViewController {
         
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                                     right: view.rightAnchor, paddingLeft: 40, paddingBottom: 16, paddingRight: 40)
+                                        right: view.rightAnchor, paddingLeft: 40, paddingBottom: 16, paddingRight: 40)
     }
 }
 
