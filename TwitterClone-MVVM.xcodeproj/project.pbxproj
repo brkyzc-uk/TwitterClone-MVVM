@@ -31,6 +31,9 @@
 		F7B51C33286B3F64006AC8A4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B51C32286B3F63006AC8A4 /* UserService.swift */; };
 		F7B51C35286B4B07006AC8A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B51C34286B4B07006AC8A4 /* User.swift */; };
 		F7B51C38286B521A006AC8A4 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F7B51C37286B521A006AC8A4 /* SDWebImage */; };
+		F7B51C3A286C2707006AC8A4 /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B51C39286C2707006AC8A4 /* UploadTweetController.swift */; };
+		F7B51C3E286C6702006AC8A4 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B51C3D286C6702006AC8A4 /* CaptionTextView.swift */; };
+		F7B51C40286D8C12006AC8A4 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B51C3F286D8C11006AC8A4 /* TweetService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		F7B51C2E2866046B006AC8A4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		F7B51C32286B3F63006AC8A4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F7B51C34286B4B07006AC8A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F7B51C39286C2707006AC8A4 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
+		F7B51C3D286C6702006AC8A4 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
+		F7B51C3F286D8C11006AC8A4 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 			children = (
 				F7B51C2E2866046B006AC8A4 /* AuthService.swift */,
 				F7B51C32286B3F63006AC8A4 /* UserService.swift */,
+				F7B51C3F286D8C11006AC8A4 /* TweetService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -137,6 +144,7 @@
 				F733DAC92858BC24009EF7EC /* ExploreController.swift */,
 				F733DACB2858BC33009EF7EC /* NotificationsController.swift */,
 				F733DACD2858BC45009EF7EC /* ConversationsController.swift */,
+				F7B51C39286C2707006AC8A4 /* UploadTweetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -151,6 +159,7 @@
 		F733DAC32858B8DC009EF7EC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F7B51C3D286C6702006AC8A4 /* CaptionTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,12 +266,14 @@
 			files = (
 				F7B51C33286B3F64006AC8A4 /* UserService.swift in Sources */,
 				F733DACC2858BC33009EF7EC /* NotificationsController.swift in Sources */,
+				F7B51C3E286C6702006AC8A4 /* CaptionTextView.swift in Sources */,
 				F733DACE2858BC45009EF7EC /* ConversationsController.swift in Sources */,
 				F78491DF286338E0002CDECA /* Utilities.swift in Sources */,
 				F733DAAC2858B7B9009EF7EC /* AppDelegate.swift in Sources */,
 				F733DAD02858C95B009EF7EC /* Extensions.swift in Sources */,
 				F733DACA2858BC24009EF7EC /* ExploreController.swift in Sources */,
 				F7B51C2F2866046B006AC8A4 /* AuthService.swift in Sources */,
+				F7B51C3A286C2707006AC8A4 /* UploadTweetController.swift in Sources */,
 				F7B51C35286B4B07006AC8A4 /* User.swift in Sources */,
 				F733DAAE2858B7B9009EF7EC /* SceneDelegate.swift in Sources */,
 				F733DAC62858B99A009EF7EC /* MainTabController.swift in Sources */,
@@ -270,6 +281,7 @@
 				F733DAD5285B84E7009EF7EC /* RegistrationController.swift in Sources */,
 				F733DAC82858BBCA009EF7EC /* FeedController.swift in Sources */,
 				F7B51C2D2865F317006AC8A4 /* Constants.swift in Sources */,
+				F7B51C40286D8C12006AC8A4 /* TweetService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
